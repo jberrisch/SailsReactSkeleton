@@ -21,6 +21,14 @@
 
 module.exports.connections = {
 
+  modulrSails: {
+    adapter: 'sails-mysql',
+    host: 'localhost',
+    user: 'modulr_sails',
+    password: 'modulr_sails',
+    database: 'modulr_sails'
+  }
+  
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
