@@ -27,8 +27,8 @@ module.exports.connections = {
     user: 'modulr_sails',
     password: 'modulr_sails',
     database: 'modulr_sails'
-  }
-  
+  },
+
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
