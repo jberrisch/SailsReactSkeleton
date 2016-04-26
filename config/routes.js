@@ -36,11 +36,11 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'get /login': {
+  'GET /login': {
     view: 'login'
   },
 
-  'get /register': {
+  'GET /register': {
     view: 'register'
   }
 

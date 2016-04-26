@@ -15,18 +15,37 @@ class UserItem extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.save = this.save.bind(this);
+    this.changeUi = this.changeUi.bind(this);
 
     this.state = {
       email: (this.props.user.email || ''),
-      password: (this.props.user.password || '')
+      password: (this.props.user.password || ''),
+      publish: (this.props.user.publish || '')
     };
   }
 
-  handleChange(e) {
+  componentDidMount() {
+    if (!this.subscribed && this.props.uuid) {
+      this.props.model.subscribe(data => this.changeSio(data), this.props.uuid, 'updated');
+      this.subscribed = true;
+    }
+  }
+
+  changeSio(data) {
+    this.setState(data);
+  }
+
+  changeUi(e) {
     var newState = {};
-    newState[e.target.name] = e.target.value;
+
+    switch (e.target.type) {
+      case 'checkbox':
+        newState[e.target.name] = (e.target.checked || false);
+        break;
+      default:
+        newState[e.target.name] = e.target.value;
+    }
+
     this.setState(newState);
   }
 
@@ -34,7 +53,19 @@ class UserItem extends React.Component {
     this.props.onSave(this.state);
   }
 
+  destroy() {
+    this.props.onDestroy();
+  }
+
   render() {
+    var deleteBtn;
+
+    if (this.props.uuid) {
+      deleteBtn = (
+        <button onClick={this.destroy.bind(this)}>Delete</button>
+      );
+    }
+
     return (
       <li>
         <div>
@@ -42,15 +73,22 @@ class UserItem extends React.Component {
             type='text'
             name='password'
             value={this.state.password}
-            onChange={this.handleChange}
+            onChange={this.changeUi}
           />
           <input
             type='email'
             name='email'
             value={this.state.email}
-            onChange={this.handleChange}
+            onChange={this.changeUi}
           />
-        <button onClick={this.save}>Save</button>
+          <input
+            type='checkbox'
+            name='publish'
+            checked={this.state.publish}
+            onChange={this.changeUi}
+          />
+          <button onClick={this.save.bind(this)}>Save</button>
+          {deleteBtn}
         </div>
       </li>
     );

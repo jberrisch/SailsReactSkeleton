@@ -4,51 +4,80 @@
  */
 
 class UserModel {
-  constructor(url, socket) {
-    this.url = url;
+  constructor(channel, socket) {
+    this.channel = channel;
     this.socket = socket;
-    this.onChanges = [];
+    this.url = '/' + channel;
+
     this.users = [];
+
+    this.cbGlobal = [];
+    this.cbItem = {};
 
     this.connect();
   }
 
-  fetch() {
-    this.socket.get(this.url, msg => {
-      console.log('Listening msg:' + JSON.stringify(msg));
-      
-      this.set(msg);
-    });
-  }
-
   connect() {
-    this.socket.on('user', msg => {
-      console.log('Received msg:', msg);
+    this.socket.on(this.channel, msg => {
+      if (msg.verb === 'created' ||
+          msg.verb === 'destroyed') {
 
-      this.socket.get(this.url, users => {
-        this.set(users);
+        return this.fetch();
+      }
+
+      if (msg.id) {
+        this.dispatch(msg.id, msg.verb, msg.data);
+      }
+    });
+  }
+
+  subscribe(cb, id, action) {
+    if (!cb) {
+        return;
+    }
+
+    if (!id) {
+      this.cbGlobal.push(cb);
+    }
+    else {
+      if (!this.cbItem[id]) {
+        this.cbItem[id] = {};
+      }
+
+      if (!this.cbItem[id][action]) {
+        this.cbItem[id][action] = [];
+      }
+
+      this.cbItem[id][action].push(cb);
+    }
+  }
+
+  dispatch(id, action, data) {
+    if (!id) {
+      this.cbGlobal.forEach(cb => {
+        cb();
       });
+    }
+    else {
+      if (this.cbItem[id] && this.cbItem[id][action]) {
+        this.cbItem[id][action].forEach(cb => {
+          cb(data);
+        });
+      }
+    }
+  }
+
+  fetch() {
+    this.socket.get(this.url, data => {
+      this.users = data;
+      this.dispatch();
     });
-  }
-
-  subscribe(onChange) {
-    this.onChanges.push(onChange);
-  }
-
-  inform() {
-    this.onChanges.forEach(cb => {
-      cb();
-    });
-  }
-
-  set(data) {
-    this.users = data;
-    this.inform();
   }
 
   add(state) {
     this.socket.post(this.url, state, data => {
       console.log('User added :: ', data);
+      this.fetch();
     });
   }
 
@@ -57,6 +86,13 @@ class UserModel {
       console.log('User saved :: ', data);
     });
   };
+
+  destroy(id) {
+    this.socket.delete(this.url + '/' + id, data => {
+      console.log('User destroyed :: ', data);
+      this.fetch();
+    });
+  }
 }
 
 

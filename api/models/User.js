@@ -11,20 +11,32 @@ module.exports = {
 
   attributes: {
     uuid: {
+      primaryKey: true,
       type: 'string',
       size: 36,
-      defaultsTo: function() {
-        return uuid.v4();
-      }
+      unique: true,
+      required: true,
+      uuidv4: true,
+      defaultsTo: uuid.v4
     },
 
     email : {
       type: 'string',
-      email: true
+      email: true,
+      unique: true,
+      required: true
     },
 
     password : {
-      type: 'string'
+      type: 'string',
+      unique: true,
+      required: true
+    },
+
+    publish: {
+      type: 'boolean',
+      required: true,
+      defaultsTo: false
     }
   }
 

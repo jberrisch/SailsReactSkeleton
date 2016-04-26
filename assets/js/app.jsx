@@ -15,7 +15,7 @@ var UserModel = require('./models/user.jsx');
  */
 
 var socket = io.sails.connect();
-var userModel = new UserModel('/user', socket);
+var userModel = new UserModel('user', socket);
 
 
 /**

@@ -17,19 +17,23 @@ class UserView extends React.Component {
     super(props, context);
 
     this.state = {
-      fetched: false,
+      users: false,
       adding: false
     };
   }
 
   componentDidMount() {
-    this.props.model.subscribe(() => this.fetched());
+    if (!this.subscribed) {
+      this.props.model.subscribe(() => this.fetched());
+      this.subscribed = true;
+    }
+
     this.props.model.fetch();
   }
 
   fetched() {
     this.setState({
-      fetched: true
+      users: this.props.model.users
     });
   }
 
@@ -39,38 +43,54 @@ class UserView extends React.Component {
     }
 
     this.props.model.users.push({});
+
     this.setState({
       adding: true
     });
   }
 
   save(user, state) {
-    if (!user.id) {
+    if (!user.uuid) {
       this.props.model.add(state);
+      this.setState({
+        adding: false
+      });
     }
     else {
-      this.props.model.save(user.id, state);
+      this.props.model.save(user.uuid, state);
     }
+  }
+
+  destroy(user) {
+    if (!user.uuid) {
+        return;
+    }
+
+    this.props.model.destroy(user.uuid);
+    this.setState({
+      users: this.props.model.users
+    });
   }
 
   render() {
     var main;
     var users = this.props.model.users;
 
-    var userItems = users.map(user => {
+    if (this.state.users) {
+      var userItems = this.state.users.map(user => {
         return (
           <UserItem
             key={user.uuid}
+            model={this.props.model}
             uuid={user.uuid}
             user={user}
             onAdd={this.add.bind(this, user)}
             onSave={this.save.bind(this, user)}
+            onDestroy={this.destroy.bind(this, user)}
           />
         );
-      }
-    );
+      });
 
-    if (users.length) {
       main = (
         <section id="main">
           <p>Description never changes</p>
