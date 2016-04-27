@@ -102,7 +102,7 @@ class UserView extends React.Component {
     }
 
     return (
-      <div>
+      <div className='userView'>
         Users:
         {main}
         <button onClick={this.add.bind(this)}>Add</button>

@@ -20,7 +20,7 @@ class UserItem extends React.Component {
     this.state = {
       email: (this.props.user.email || ''),
       password: (this.props.user.password || ''),
-      publish: (this.props.user.publish || '')
+      publish: (this.props.user.publish || false)
     };
   }
 
