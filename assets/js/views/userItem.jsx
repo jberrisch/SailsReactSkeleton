@@ -19,15 +19,27 @@ class UserItem extends React.Component {
 
     this.state = {
       email: (this.props.user.email || ''),
-      password: (this.props.user.password || ''),
+      username: (this.props.user.username || ''),
       publish: (this.props.user.publish || false)
     };
   }
 
   componentDidMount() {
-    if (!this.subscribed && this.props.uuid) {
-      this.props.model.subscribe(data => this.changeSio(data), this.props.uuid, 'updated');
-      this.subscribed = true;
+    if (!this.listenerToken) {
+      this.listenerToken = this.props.store.addListener(data => {
+
+        console.log("GET LIST EVENT");
+        console.log("Data:", this.props.store.get('users', this.props.id));
+        // this.setState({
+        //   users: this.props.store.get('users')
+        // })
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.listenerToken) {
+      this.listenerToken.remove();
     }
   }
 
@@ -60,7 +72,7 @@ class UserItem extends React.Component {
   render() {
     var deleteBtn;
 
-    if (this.props.uuid) {
+    if (this.props.id) {
       deleteBtn = (
         <button onClick={this.destroy.bind(this)}>Delete</button>
       );
@@ -71,8 +83,8 @@ class UserItem extends React.Component {
         <div>
           <input
             type='text'
-            name='password'
-            value={this.state.password}
+            name='username'
+            value={this.state.username}
             onChange={this.changeUi}
           />
           <input

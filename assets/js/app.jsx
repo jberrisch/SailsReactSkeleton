@@ -5,8 +5,9 @@
 
 var React = require('react');
 var ReactDOM = require('react/lib/ReactDOM');
+var Dispatcher = require("flux").Dispatcher;
 var UserView = require('./views/user.jsx');
-var UserModel = require('./models/user.jsx');
+var UserStore = require('./stores/user.js');
 
 
 /**
@@ -14,8 +15,8 @@ var UserModel = require('./models/user.jsx');
  *
  */
 
-var socket = io.sails.connect();
-var userModel = new UserModel('user', socket);
+var dispatcher = new Dispatcher();
+var userStore = new UserStore(dispatcher, 'user', io.sails.connect());
 
 
 /**
@@ -24,6 +25,6 @@ var userModel = new UserModel('user', socket);
  */
 
 ReactDOM.render(
-  <UserView model={userModel} />,
+  <UserView store={userStore}/>,
   document.getElementById('userapp')
 );

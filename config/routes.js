@@ -37,12 +37,23 @@ module.exports.routes = {
   },
 
   'GET /login': {
-    view: 'login'
+    controller: 'User',
+    action: 'loginCheck'
+  },
+
+  'POST /login': {
+    controller: 'User',
+    action: 'login'
   },
 
   'GET /register': {
     view: 'register'
-  }
+  },
+
+  // 'PUT /user/:id': {
+  //   controller: 'User',
+  //   action: 'save'
+  // }
 
   /***************************************************************************
   *                                                                          *

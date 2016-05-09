@@ -17,24 +17,30 @@ class UserView extends React.Component {
     super(props, context);
 
     this.state = {
-      users: false,
+      users: this.props.store.get('users'),
       adding: false
     };
   }
 
   componentDidMount() {
-    if (!this.subscribed) {
-      this.props.model.subscribe(() => this.fetched());
-      this.subscribed = true;
+    this.setState({
+      users: []
+    });
+    if (!this.listenerToken) {
+      this.listenerToken = this.props.store.addListener(() => {
+        this.setState({
+          users: this.props.store.get('users')
+        })
+      });
     }
 
-    this.props.model.fetch();
+    this.props.store.fetch();
   }
 
-  fetched() {
-    this.setState({
-      users: this.props.model.users
-    });
+  componentWillUnmount() {
+    if (this.listenerToken) {
+      this.listenerToken.remove();
+    }
   }
 
   add() {
@@ -42,47 +48,46 @@ class UserView extends React.Component {
         return;
     }
 
-    this.props.model.users.push({});
-
+    this.props.store.dispatcher.dispatch({ actionType: 'user-add'});
     this.setState({
       adding: true
     });
   }
 
   save(user, state) {
-    if (!user.uuid) {
-      this.props.model.add(state);
+    if (!user.id) {
+      this.props.store.add(state);
       this.setState({
         adding: false
       });
     }
     else {
-      this.props.model.save(user.uuid, state);
+      this.props.store.save(user.id, state);
     }
   }
 
   destroy(user) {
-    if (!user.uuid) {
+    if (!user.id) {
         return;
     }
 
-    this.props.model.destroy(user.uuid);
+    this.props.store.destroy(user.id);
     this.setState({
-      users: this.props.model.users
+      users: this.props.store.users
     });
   }
 
   render() {
     var main;
-    var users = this.props.model.users;
+    var users = this.props.store.users;
 
     if (this.state.users) {
       var userItems = this.state.users.map(user => {
         return (
           <UserItem
-            key={user.uuid}
-            model={this.props.model}
-            uuid={user.uuid}
+            key={user.id}
+            store={this.props.store}
+            id={user.id}
             user={user}
             onAdd={this.add.bind(this, user)}
             onSave={this.save.bind(this, user)}
