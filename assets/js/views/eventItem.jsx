@@ -22,29 +22,6 @@ class EventItem extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (!this.listenerToken) {
-      this.listenerToken = this.props.store.addListener(data => {
-
-        console.log("GET LIST EVENT");
-        console.log("Data:", this.props.store.get('events', this.props.id));
-        // this.setState({
-        //   users: this.props.store.get('users')
-        // })
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.listenerToken) {
-      this.listenerToken.remove();
-    }
-  }
-
-  changeSio(data) {
-    this.setState(data);
-  }
-
   changeUi(e) {
     var newState = {};
 
