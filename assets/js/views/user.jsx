@@ -16,8 +16,9 @@ class UserView extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.store = this.props.route.store;
     this.state = {
-      users: this.props.route.store.get('users'),
+      users: this.store.get('users'),
       adding: false
     };
   }
@@ -27,14 +28,14 @@ class UserView extends React.Component {
       users: []
     });
     if (!this.listenerToken) {
-      this.listenerToken = this.props.route.store.addListener(() => {
+      this.listenerToken = this.store.addListener(() => {
         this.setState({
-          users: this.props.route.store.get('users')
+          users: this.store.get('users')
         })
       });
     }
 
-    this.props.route.store.fetch();
+    this.store.fetch();
   }
 
   componentWillUnmount() {
@@ -48,7 +49,7 @@ class UserView extends React.Component {
         return;
     }
 
-    this.props.route.store.dispatcher.dispatch({ actionType: 'user-add'});
+    this.store.dispatcher.dispatch({ actionType: 'user-add'});
     this.setState({
       adding: true
     });
@@ -56,13 +57,13 @@ class UserView extends React.Component {
 
   save(user, state) {
     if (!user.id) {
-      this.props.route.store.add(state);
+      this.store.add(state);
       this.setState({
         adding: false
       });
     }
     else {
-      this.props.route.store.save(user.id, state);
+      this.store.save(user.id, state);
     }
   }
 
@@ -71,22 +72,22 @@ class UserView extends React.Component {
         return;
     }
 
-    this.props.route.store.destroy(user.id);
+    this.store.destroy(user.id);
     this.setState({
-      users: this.props.route.store.users
+      users: this.store.users
     });
   }
 
   render() {
     var main;
-    var users = this.props.route.store.users;
+    var users = this.store.users;
 
     if (this.state.users) {
       var userItems = this.state.users.map(user => {
         return (
           <UserItem
             key={user.id}
-            store={this.props.route.store}
+            store={this.store}
             id={user.id}
             user={user}
             onAdd={this.add.bind(this, user)}

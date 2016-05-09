@@ -15,6 +15,7 @@ class EventView extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.store = this.props.route.store;
     this.state = {};
   }
 
@@ -24,14 +25,14 @@ class EventView extends React.Component {
     });
 
     if (!this.listenerToken) {
-      this.listenerToken = this.props.route.store.addListener(() => {
+      this.listenerToken = this.store.addListener(() => {
         this.setState({
-          events: this.props.route.store.get('events')
+          events: this.store.get('events')
         })
       });
     }
 
-    this.props.route.store.fetch();
+    this.store.fetch();
   }
 
   componentWillUnmount() {
