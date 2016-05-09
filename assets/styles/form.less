@@ -1,0 +1,33 @@
+form {
+    input[type='text'],
+    input[type='number'],
+    input[type='tel'],
+    input[type='email'],
+    input[type='password'],
+    .month-wrapper,
+    .date-wrapper,
+    .select-wrapper,
+    textarea,
+    select {
+        .box-sizing(border-box);
+        border: 1px solid @color-grey;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    button, input[type='button'], input[type='submit'] {
+        background-color: black;
+        color: white;
+
+        &:disabled {
+            background-color: @color-grey-light;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
