@@ -41,19 +41,9 @@ module.exports.routes = {
     action: 'loginCheck'
   },
 
-  'POST /login': {
-    controller: 'User',
-    action: 'login'
-  },
-
   'GET /register': {
     view: 'register'
   },
-
-  // 'PUT /user/:id': {
-  //   controller: 'User',
-  //   action: 'save'
-  // }
 
   /***************************************************************************
   *                                                                          *

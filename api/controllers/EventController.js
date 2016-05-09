@@ -6,7 +6,5 @@
  */
 
 module.exports = {
-	app : function(req, res) {
-		return res.view({});
-	},
+
 };

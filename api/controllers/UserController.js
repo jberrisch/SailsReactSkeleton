@@ -19,9 +19,5 @@ module.exports = {
     console.log(req.body);
 
     return res.send('ok');
-  },
-
-	app : function(req, res) {
-		return res.view({});
-	}
+  }
 };
