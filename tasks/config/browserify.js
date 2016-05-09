@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         dest: '.tmp/public/browserify/app.js'
       ,
       options: {
-        transform: [['babelify', {presets: ['es2015', 'react']}]]
+        transform: [['babelify', {presets: ['react']}]]
       }
     },
 
