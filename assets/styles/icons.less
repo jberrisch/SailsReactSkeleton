@@ -1,0 +1,25 @@
+.icon {
+	width: 40px;
+	height: auto;
+
+	&.small {
+		width: 20px;
+	}
+}
+
+.icon-add-user {
+	position: relative;
+	padding-right: 9px;
+
+	.icon:last-of-type {
+		position: absolute;
+		top: 13px;
+		right: 0;
+		background: white;
+		.border-radius(50%);
+	}
+
+	&.cancel {
+		opacity: .4;
+	}
+}
