@@ -17,25 +17,32 @@ class UserView extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.store = this.props.route.store;
     this.state = {
-      activeView: 'list',
-      adding: false
+      activeView: 'list'
     };
   }
 
   componentDidMount() {
-    this.setState({
-      users: []
-    });
-    if (!this.listenerToken) {
-      this.listenerToken = this.props.route.store.addListener(() => {
-        this.setState({
-          activeView: 'list'
-        })
-      });
+    if (!this.listening) {
+      this.store.on('change', this.listener.bind(this));
+      this.listening = true;
     }
 
-    this.props.route.store.fetch();
+    this.store.fetch();
+  }
+
+  componentWillUnmount() {
+    if (this.listening) {
+      this.store.removeListener('change', this.listener);
+      this.listening = false;
+    }
+  }
+
+  listener() {
+      this.setState({
+        activeView: 'list'
+    });
   }
 
   componentWillUnmount() {
@@ -59,14 +66,12 @@ class UserView extends React.Component {
   render() {
     var main;
 
-    if (this.state.activeView === 'list' && this.state.users) {
+    if (this.state.activeView === 'list') {
 
-      main =<UserList route={this.props.route} />;
+      main =<UserList store={this.store} />;
     } else {
-      main = <UserAdd route={this.props.route} />;
+      main = <UserAdd store={this.store} />;
     }
-
-
 
     return (
         <div className='section-members'>

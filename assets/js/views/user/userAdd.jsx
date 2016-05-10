@@ -15,13 +15,13 @@ class UserAdd extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
-        };
+        this.store = this.props.store;
+        this.state = {};
     }
 
     add(e) {
         e.preventDefault();
-        this.props.route.store.add({
+        this.store.add({
             username: this.refs.firstname.value+'|'+this.refs.lastname.value,
             email: this.refs.email.value,
             publish: false

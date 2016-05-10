@@ -16,25 +16,30 @@ class UserView extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        this.store = this.props.store;
         this.state = {
-            users: this.props.route.store.get('users')
+            users: this.store.get('users')
         };
     }
 
     componentDidMount() {
+      if (!this.listening) {
+        this.store.on('change', this.listener.bind(this));
+        this.listening = true;
+      }
+    }
+
+    componentWillUnmount() {
+      if (this.listening) {
+        this.store.removeListener('change', this.listener);
+        this.listening = false;
+      }
+    }
+
+    listener() {
         this.setState({
-            users: []
+            users: this.store.get('users')
         });
-        if (!this.listenerToken) {
-            this.listenerToken = this.props.route.store.addListener(() => {
-
-                this.setState({
-                    users: this.props.route.store.get('users')
-                })
-            });
-        }
-
-        this.props.route.store.fetch();
     }
 
     componentWillUnmount() {
@@ -43,15 +48,14 @@ class UserView extends React.Component {
         }
     }
 
-
     destroy(user) {
         if (!user.id) {
             return;
         }
 
-        this.props.route.store.destroy(user.id);
+        this.store.destroy(user.id);
         this.setState({
-            users: this.props.route.store.users
+            users: this.store.users
         });
     }
 
@@ -59,12 +63,13 @@ class UserView extends React.Component {
         var main;
 
         if (this.state.users) {
-            var userItems = this.state.users.map(user => {
+            var userItems = this.state.users.map((user, key) => {
                 return (
                     <UserItem
-                        key={user.id}
-                        store={this.props.route.store}
                         id={user.id}
+                        key={user.id}
+                        store={this.store}
+                        storeKey={key}
                         user={user}
                         onDestroy={this.destroy.bind(this, user)}
                     />
