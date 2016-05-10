@@ -53,21 +53,24 @@ class UserItem extends React.Component {
 
         return (
             <tr>
-                <td width="200">
+                <td width="33%">
                     {name[0]} {name[1]}
                 </td>
-                <td width="200">
+                <td width="53%">
                     {this.state.email}
                 </td>
-                <td>
-                    <input
-                        type='checkbox'
-                        name='publish'
-                        checked={this.state.publish}
-                        onChange={this.changePublishRights.bind(this)}
-                    />
+                <td width="2%">
+                    <label className="checkbox">
+                        <input
+                            type='checkbox'
+                            name='publish'
+                            checked={this.state.publish}
+                            onChange={this.changePublishRights.bind(this)}
+                        />
+                        <i></i>
+                    </label>
                 </td>
-                <td>
+                <td width="2%">
                     {deleteBtn}
                 </td>
             </tr>
