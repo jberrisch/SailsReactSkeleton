@@ -4,8 +4,8 @@
  */
 
 var React = require('react');
-var UserList = require('./userList.jsx');
-var UserAdd = require('./userAdd.jsx');
+var AccountList = require('./accountList.jsx');
+var AccountAdd = require('./accountAdd.jsx');
 
 
 /**
@@ -13,7 +13,7 @@ var UserAdd = require('./userAdd.jsx');
  *
  */
 
-class UserView extends React.Component {
+class AccountView extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -68,9 +68,9 @@ class UserView extends React.Component {
 
     if (this.state.activeView === 'list') {
 
-      main =<UserList store={this.store} />;
+      main =<AccountList store={this.store} />;
     } else {
-      main = <UserAdd store={this.store} />;
+      main = <AccountAdd store={this.store} />;
     }
 
     return (
@@ -98,4 +98,4 @@ class UserView extends React.Component {
  *
  */
 
-module.exports = UserView;
+module.exports = AccountView;

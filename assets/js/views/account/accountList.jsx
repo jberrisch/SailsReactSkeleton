@@ -4,7 +4,7 @@
  */
 
 var React = require('react');
-var UserItem = require('./userItem.jsx');
+var AccountItem = require('./accountItem.jsx');
 
 
 /**
@@ -12,13 +12,13 @@ var UserItem = require('./userItem.jsx');
  *
  */
 
-class UserView extends React.Component {
+class AccountView extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.store = this.props.store;
         this.state = {
-            users: this.store.get('users')
+            accounts: this.store.get()
         };
     }
 
@@ -38,7 +38,7 @@ class UserView extends React.Component {
 
     listener() {
         this.setState({
-            users: this.store.get('users')
+            accounts: this.store.get('accounts')
         });
     }
 
@@ -48,30 +48,30 @@ class UserView extends React.Component {
         }
     }
 
-    destroy(user) {
-        if (!user.id) {
+    destroy(account) {
+        if (!account.id) {
             return;
         }
 
-        this.store.destroy(user.id);
+        this.store.destroy(account.id);
         this.setState({
-            users: this.store.users
+            accounts: this.store.accounts
         });
     }
 
     render() {
         var main;
 
-        if (this.state.users) {
-            var userItems = this.state.users.map((user, key) => {
+        if (this.state.accounts) {
+            var accountItems = this.state.accounts.map((account, key) => {
                 return (
-                    <UserItem
-                        id={user.id}
-                        key={user.id}
+                    <AccountItem
+                        id={account.id}
+                        key={account.id}
                         store={this.store}
                         storeKey={key}
-                        user={user}
-                        onDestroy={this.destroy.bind(this, user)}
+                        account={account}
+                        onDestroy={this.destroy.bind(this, account)}
                     />
                 );
             });
@@ -79,7 +79,7 @@ class UserView extends React.Component {
             main = (
                     <table>
                         <tbody>
-                        {userItems}
+                        {accountItems}
                         </tbody>
                     </table>
             );
@@ -99,4 +99,4 @@ class UserView extends React.Component {
  *
  */
 
-module.exports = UserView;
+module.exports = AccountView;

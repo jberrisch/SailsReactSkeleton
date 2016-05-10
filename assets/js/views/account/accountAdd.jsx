@@ -11,7 +11,7 @@ var React = require('react');
  *
  */
 
-class UserAdd extends React.Component {
+class AccountAdd extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -22,9 +22,13 @@ class UserAdd extends React.Component {
     add(e) {
         e.preventDefault();
         this.store.add({
-            username: this.refs.firstname.value+'|'+this.refs.lastname.value,
-            email: this.refs.email.value,
-            publish: false
+            firstname: this.refs.firstname.value,
+            lastname: this.refs.lastname.value,
+            publish: false,
+            user: {
+                email: this.refs.email.value,
+                username: this.refs.firstname.value + ' ' + this.refs.lastname.value
+            }
         });
     }
 
@@ -50,4 +54,4 @@ class UserAdd extends React.Component {
  *
  */
 
-module.exports = UserAdd;
+module.exports = AccountAdd;

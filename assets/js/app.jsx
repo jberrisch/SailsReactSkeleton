@@ -13,8 +13,8 @@ var browserHistory = require('react-router').browserHistory;
 
 var Dispatcher = require("flux").Dispatcher;
 
-var UserView = require('./views/user/user.jsx');
-var UserStore = require('./stores/user.js');
+var AccountView = require('./views/account/account.jsx');
+var AccountStore = require('./stores/account.js');
 
 var EventView = require('./views/event.jsx');
 var EventStore = require('./stores/event.js');
@@ -28,7 +28,7 @@ var EventStore = require('./stores/event.js');
 var sio = io.sails.connect();
 var dispatcher = new Dispatcher();
 
-var userStore = new UserStore(dispatcher, 'user', sio);
+var accountStore = new AccountStore(dispatcher, 'account', sio);
 var eventStore = new EventStore(dispatcher, 'event', sio);
 
 
@@ -39,7 +39,7 @@ var eventStore = new EventStore(dispatcher, 'event', sio);
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/index/user" component={UserView} store={userStore}/>
+    <Route path="/index/account" component={AccountView} store={accountStore}/>
     <Route path="/index/event" component={EventView} store={eventStore}/>
   </Router>
 ), document.getElementById('app'));

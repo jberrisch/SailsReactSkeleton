@@ -11,7 +11,7 @@ var EventEmitter = require('events').EventEmitter;
 *
 */
 
-class UserStore extends EventEmitter {
+class AccountStore extends EventEmitter {
     constructor(dispatcher, channel, socket) {
         super();
 
@@ -23,7 +23,7 @@ class UserStore extends EventEmitter {
         this.socket = socket;
         this.url = '/' + channel;
 
-        this.users = [];
+        this.accounts = [];
 
         this.connect();
     }
@@ -38,7 +38,7 @@ class UserStore extends EventEmitter {
 
             if (msg.verb === 'updated') {
                 this.dispatcher.dispatch({
-                    actionType: 'user-modified',
+                    actionType: 'account-modified',
                     payload: msg
                 });
             }
@@ -46,7 +46,7 @@ class UserStore extends EventEmitter {
     }
 
     get() {
-        return this.users;
+        return this.accounts;
     }
 
     reduce(action) {
@@ -55,18 +55,18 @@ class UserStore extends EventEmitter {
         }
 
         switch (action.actionType) {
-            case 'user-modified':
-                for (var usersIt in this.users) {
-                    if (this.users[usersIt].id === parseInt(action.payload.id)) {
-                        this.users[usersIt] = action.payload.data;
-                        this.emit('change-item-' + this.users[usersIt].id);
+            case 'account-modified':
+                for (var accountsIt in this.accounts) {
+                    if (this.accounts[accountsIt].id === parseInt(action.payload.id)) {
+                        this.accounts[accountsIt] = action.payload.data;
+                        this.emit('change-item-' + this.accounts[accountsIt].id);
                         break;
                     }
                 }
                 break;
 
-            case 'user-add':
-                this.users.push({});
+            case 'account-add':
+                this.accounts.push({});
                 return this.emit('change');
 
             default:
@@ -76,31 +76,38 @@ class UserStore extends EventEmitter {
 
     fetch() {
         this.socket.get(this.url, data => {
-            this.users = data;
+            console.log("Accounts:", data);
+            this.accounts = data;
             this.emit('change');
         });
     }
 
     add(state) {
-        if (state && state.email) {
-            state.identifier = state.email;
+        if (state && state.user && state.user.email) {
+            state.user.identifier = state.user.email;
         }
 
-        this.socket.post('/register', state, data => {
+        this.socket.post('/register', state.user, data => {
             console.log('User added :: ', data);
-            this.fetch();
+            state.user.id = data.id;
+
+            this.socket.post(this.url, state, data => {
+                console.log('Account added :: ', data);
+                this.fetch();
+            })
         });
     }
 
     save(id, state) {
+        console.log("Try to save state %s:", id, state);
         this.socket.put(this.url + '/' + id, state, data => {
-            console.log('User saved :: ', data);
+            console.log('Account saved :: ', data);
         });
     };
 
     destroy(id) {
         this.socket.delete(this.url + '/' + id, data => {
-            console.log('User destroyed :: ', data);
+            console.log('Account destroyed :: ', data);
             this.fetch();
         });
     }
@@ -112,4 +119,4 @@ class UserStore extends EventEmitter {
 *
 */
 
-module.exports = UserStore;
+module.exports = AccountStore;

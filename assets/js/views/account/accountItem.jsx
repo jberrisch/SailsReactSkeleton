@@ -11,15 +11,20 @@ var React = require('react');
  *
  */
 
-class UserItem extends React.Component {
+class AccountItem extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.store = this.props.store;
         this.state = {
-            email: (this.props.user.email || ''),
-            username: (this.props.user.username || ''),
-            publish: (this.props.user.publish || false)
+            firstname: (this.props.account.firstname || ''),
+            lastname: (this.props.account.lastname || ''),
+            publish: (this.props.account.publish || ''),
+            user: {
+                id: (this.props.account.user.id || ''),
+                email: (this.props.account.user.email || ''),
+                username: (this.props.account.user.username || '')
+            }
         };
     }
 
@@ -39,9 +44,13 @@ class UserItem extends React.Component {
 
     listener() {
         this.setState({
-            email: this.store.users[this.props.storeKey].email,
-            username: this.store.users[this.props.storeKey].username,
-            publish: this.store.users[this.props.storeKey].publish
+            firstname: (this.store.accounts[this.props.storeKey].firstname || ''),
+            lastname: (this.store.accounts[this.props.storeKey].lastname || ''),
+            publish: (this.store.accounts[this.props.storeKey].publish || ''),
+            user: {
+                email: (this.store.accounts[this.props.storeKey].user.email || ''),
+                username: (this.store.accounts[this.props.storeKey].user.username || '')
+            }
         });
     }
 
@@ -70,15 +79,13 @@ class UserItem extends React.Component {
             );
         }
 
-        var name = this.state.username.split('|');
-
         return (
             <tr>
                 <td width="33%">
-                    {name[0]} {name[1]}
+                    {this.state.firstname} {this.state.lastname}
                 </td>
                 <td width="53%">
-                    {this.state.email}
+                    {this.state.user.email}
                 </td>
                 <td width="2%">
                     <label className="checkbox">
@@ -105,4 +112,4 @@ class UserItem extends React.Component {
  *
  */
 
-module.exports = UserItem;
+module.exports = AccountItem;
