@@ -66,22 +66,21 @@ class UserView extends React.Component {
       main = <UserAdd route={this.props.route} />;
     }
 
-    var _cancelAddUser = this.state.activeView === 'add' ? (
-        <button className="icon-add-user cancel" onClick={this.backToList.bind(this)}>
-          <img className="icon" src="/images/svg/user.svg" alt="" />
-          <img className="icon small" src="/images/svg/cross.svg" alt="" />
-        </button>) : '';
+
 
     return (
         <div className='section-members'>
           <h2>Members</h2>
           {main}
           <div className="buttons">
-            <button onClick={this.add.bind(this)} className="icon-add-user">
+            <button onClick={this.add.bind(this)} className={this.state.activeView==='add' ? 'icon-add-user active' : 'icon-add-user' }>
               <img className="icon" src="/images/svg/user.svg" alt="" />
               <img className="icon small" src="/images/svg/plus.svg" alt="" />
             </button>
-            {_cancelAddUser}
+            <button className={this.state.activeView==='list' ? 'icon-add-user active' : 'icon-add-user' } onClick={this.backToList.bind(this)}>
+              <img className="icon" src="/images/svg/user.svg" alt="" />
+              <img className="icon small" src="/images/svg/cross.svg" alt="" />
+            </button>
             </div>
         </div>
     );
