@@ -50,6 +50,12 @@ class UserView extends React.Component {
     });
   }
 
+  backToList() {
+    this.setState({
+      activeView: 'list'
+    })
+  }
+
   render() {
     var main;
 
@@ -60,13 +66,23 @@ class UserView extends React.Component {
       main = <UserAdd route={this.props.route} />;
     }
 
+    var _cancelAddUser = this.state.activeView === 'add' ? (
+        <button className="icon-add-user" onClick={this.backToList.bind(this)}>
+          <img className="icon" src="/images/svg/user.svg" alt="" />
+          <img className="icon small" src="/images/svg/cross.svg" alt="" />
+        </button>) : '';
+
     return (
         <div className='section-members'>
+          <h2>Members</h2>
           {main}
-          <button onClick={this.add.bind(this)} className="icon-add-user">
-            <img className="icon" src="/images/svg/user.svg" alt="" />
-            <img className="icon small" src="/images/svg/plus.svg" alt="" />
-          </button>
+          <div className="buttons">
+            <button onClick={this.add.bind(this)} className="icon-add-user">
+              <img className="icon" src="/images/svg/user.svg" alt="" />
+              <img className="icon small" src="/images/svg/plus.svg" alt="" />
+            </button>
+            {_cancelAddUser}
+            </div>
         </div>
     );
   }

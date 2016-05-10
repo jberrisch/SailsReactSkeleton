@@ -82,7 +82,6 @@ class UserView extends React.Component {
 
         return (
             <div className="user-list">
-                <h2>Members</h2>
                 {main}
             </div>
         );

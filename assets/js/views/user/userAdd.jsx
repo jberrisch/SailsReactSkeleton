@@ -22,21 +22,25 @@ class UserAdd extends React.Component {
     add(e) {
 
         e.preventDefault();
+        console.log(this.refs.form.value().validation)
         this.props.route.store.add({
             username: this.refs.username.value,
             email: this.refs.email.value,
-            publish: this.refs.publish.value || false
+            publish: false
         });
     }
 
     render() {
 
         return (
-            <form className='section-members-add' onSubmit={this.add.bind(this)}>
-                <input ref="username" type="text" name='username' />
-                <input ref="email" type="email" name='email' /><input
-                type='checkbox' ref="publish" name='publish' checked={this.state.publish} />
-                <input type="submit" />
+            <form ref="form" className='small-form' onSubmit={this.add.bind(this)}>
+                <label for="add-firstname">Firstname</label>
+                <input id="add-firstname" ref="firstname" type="text" name='firstname' required />
+                <label for="add-lastname">Lastname</label>
+                <input id="add-lastname" ref="lastname" type="text" name='lastname' required />
+                <label for="add-email">Email</label>
+                <input id="add-email" ref="email" type="email" name='email' required />
+                <button type="submit"><img className="icon" src="/images/svg/plus.svg" alt="add" /></button>
             </form>
         );
     }
