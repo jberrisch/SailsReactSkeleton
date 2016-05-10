@@ -10,6 +10,8 @@
 .icon-add-user {
 	position: relative;
 	padding-right: 9px;
+	opacity: .4;
+	cursor: pointer;
 
 	.icon:last-of-type {
 		position: absolute;
@@ -19,7 +21,8 @@
 		.border-radius(50%);
 	}
 
-	&.cancel {
-		opacity: .4;
+	&.active {
+		opacity: 1;
+		cursor: auto;
 	}
 }
