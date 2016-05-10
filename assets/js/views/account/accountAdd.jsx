@@ -11,20 +11,24 @@ var React = require('react');
  *
  */
 
-class UserAdd extends React.Component {
+class AccountAdd extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
-        };
+        this.store = this.props.store;
+        this.state = {};
     }
 
     add(e) {
         e.preventDefault();
-        this.props.route.store.add({
-            username: this.refs.firstname.value+'|'+this.refs.lastname.value,
-            email: this.refs.email.value,
-            publish: false
+        this.store.add({
+            firstname: this.refs.firstname.value,
+            lastname: this.refs.lastname.value,
+            publish: false,
+            user: {
+                email: this.refs.email.value,
+                username: this.refs.firstname.value + ' ' + this.refs.lastname.value
+            }
         });
     }
 
@@ -50,4 +54,4 @@ class UserAdd extends React.Component {
  *
  */
 
-module.exports = UserAdd;
+module.exports = AccountAdd;
