@@ -42,7 +42,7 @@ class AccountAdd extends React.Component {
                 <input id="add-lastname" ref="lastname" type="text" name='lastname' required />
                 <label for="add-email">Email</label>
                 <input id="add-email" ref="email" type="email" name='email' required />
-                <button type="submit" className="icon-plus"></button>
+                <input type="submit" className="icon-plus" />
             </form>
         );
     }
