@@ -98,8 +98,11 @@ class AccountStore extends EventEmitter {
     }
 
     save(id, state) {
-        console.log("Try to save state %s:", id, state);
-        this.socket.put(this.url + '/' + id, state, data => {
+        var formData = {
+            publish: state.publish
+        }
+
+        this.socket.put(this.url + '/' + id, formData, data => {
             console.log('Account saved :: ', data);
         });
     };
