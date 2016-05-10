@@ -85,20 +85,20 @@ class EventStore extends MapStore {
 
   add(state) {
     this.socket.post(this.url, state, data => {
-      console.log('User added :: ', data);
+      console.log('Event added :: ', data);
       this.fetch();
     });
   }
 
   save(id, state) {
     this.socket.put(this.url + '/' + id, state, data => {
-      console.log('User saved :: ', data);
+      console.log('Event saved :: ', data);
     });
   };
 
   destroy(id) {
     this.socket.delete(this.url + '/' + id, data => {
-      console.log('User destroyed :: ', data);
+      console.log('Event destroyed :: ', data);
       this.fetch();
     });
   }
