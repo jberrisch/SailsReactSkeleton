@@ -76,7 +76,6 @@ class AccountStore extends EventEmitter {
 
     fetch() {
         this.socket.get(this.url, data => {
-            console.log("Accounts:", data);
             this.accounts = data;
             this.emit('change');
         });
