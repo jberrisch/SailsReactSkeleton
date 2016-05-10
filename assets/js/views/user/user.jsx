@@ -74,12 +74,8 @@ class UserView extends React.Component {
           {main}
           <div className="buttons">
             <button onClick={this.add.bind(this)} className={this.state.activeView==='add' ? 'icon-add-user active' : 'icon-add-user' }>
-              <img className="icon" src="/images/svg/user.svg" alt="" />
-              <img className="icon small" src="/images/svg/plus.svg" alt="" />
             </button>
-            <button className={this.state.activeView==='list' ? 'icon-add-user active' : 'icon-add-user' } onClick={this.backToList.bind(this)}>
-              <img className="icon" src="/images/svg/user.svg" alt="" />
-              <img className="icon small" src="/images/svg/cross.svg" alt="" />
+            <button className={this.state.activeView==='list' ? 'icon-user-list active' : 'icon-user-list' } onClick={this.backToList.bind(this)}>
             </button>
             </div>
         </div>

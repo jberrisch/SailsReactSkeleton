@@ -7,22 +7,30 @@
 	}
 }
 
-.icon-add-user {
-	position: relative;
-	padding-right: 9px;
+.icon-add-user, .icon-user-list {
 	opacity: .4;
 	cursor: pointer;
-
-	.icon:last-of-type {
-		position: absolute;
-		top: 13px;
-		right: 0;
-		background: white;
-		.border-radius(50%);
-	}
 
 	&.active {
 		opacity: 1;
 		cursor: auto;
 	}
+}
+
+.icon-add-user {
+	.retina-sprite(@add-member-popin-group);
+}
+
+.icon-user-list {
+	.retina-sprite(@manage-member-group);
+}
+
+.icon-delete-user {
+	.retina-sprite(@delete-user-group);
+	font-size: 0;
+	color: transparent;
+}
+
+.icon-plus {
+	.retina-sprite(@plus-group);
 }

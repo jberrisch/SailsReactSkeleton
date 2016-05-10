@@ -45,7 +45,7 @@ class UserItem extends React.Component {
 
         if (this.props.id) {
             deleteBtn = (
-                <button onClick={this.destroy.bind(this)}><img className="icon small" src="/images/svg/cross.svg" alt="delete" /></button>
+                <button onClick={this.destroy.bind(this)} className="icon-delete-user">delete</button>
             );
         }
 

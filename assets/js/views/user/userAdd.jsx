@@ -38,7 +38,7 @@ class UserAdd extends React.Component {
                 <input id="add-lastname" ref="lastname" type="text" name='lastname' required />
                 <label for="add-email">Email</label>
                 <input id="add-email" ref="email" type="email" name='email' required />
-                <button type="submit"><img className="icon" src="/images/svg/plus.svg" alt="add" /></button>
+                <button type="submit" className="icon-plus"></button>
             </form>
         );
     }

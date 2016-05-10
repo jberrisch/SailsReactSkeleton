@@ -69,13 +69,11 @@ label {
         i {
             display: block;
             float: left;
-            width: 15px;
-            height: 15px;
-            background: grey;
+            .retina-sprite(@cant-edit-group);
         }
 
         input:checked+i {
-            background: black;
+            .retina-sprite(@can-edit-group);
         }
     }
 }

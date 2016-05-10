@@ -1,0 +1,769 @@
+/*
+LESS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: @icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+@icon-home: x y offset_x offset_y width height total_width total_height image_path name;
+
+At the bottom of this section, we provide information about the spritesheet itself
+@spritesheet: width height image @spritesheet-sprites;
+*/
+@-facebook-name: 'Facebook';
+@-facebook-x: 139px;
+@-facebook-y: 25px;
+@-facebook-offset-x: -139px;
+@-facebook-offset-y: -25px;
+@-facebook-width: 25px;
+@-facebook-height: 25px;
+@-facebook-total-width: 164px;
+@-facebook-total-height: 137px;
+@-facebook-image: '../images/spritesheet.png';
+@-facebook: 139px 25px -139px -25px 25px 25px 164px 137px '../images/spritesheet.png' 'Facebook';
+@-instagram-name: 'Instagram';
+@-instagram-x: 139px;
+@-instagram-y: 50px;
+@-instagram-offset-x: -139px;
+@-instagram-offset-y: -50px;
+@-instagram-width: 25px;
+@-instagram-height: 25px;
+@-instagram-total-width: 164px;
+@-instagram-total-height: 137px;
+@-instagram-image: '../images/spritesheet.png';
+@-instagram: 139px 50px -139px -50px 25px 25px 164px 137px '../images/spritesheet.png' 'Instagram';
+@-tumblr-name: 'Tumblr';
+@-tumblr-x: 0px;
+@-tumblr-y: 111px;
+@-tumblr-offset-x: 0px;
+@-tumblr-offset-y: -111px;
+@-tumblr-width: 26px;
+@-tumblr-height: 26px;
+@-tumblr-total-width: 164px;
+@-tumblr-total-height: 137px;
+@-tumblr-image: '../images/spritesheet.png';
+@-tumblr: 0px 111px 0px -111px 26px 26px 164px 137px '../images/spritesheet.png' 'Tumblr';
+@-twitter-name: 'Twitter';
+@-twitter-x: 139px;
+@-twitter-y: 0px;
+@-twitter-offset-x: -139px;
+@-twitter-offset-y: 0px;
+@-twitter-width: 25px;
+@-twitter-height: 25px;
+@-twitter-total-width: 164px;
+@-twitter-total-height: 137px;
+@-twitter-image: '../images/spritesheet.png';
+@-twitter: 139px 0px -139px 0px 25px 25px 164px 137px '../images/spritesheet.png' 'Twitter';
+@actual-name: 'actual';
+@actual-x: 153px;
+@actual-y: 115px;
+@actual-offset-x: -153px;
+@actual-offset-y: -115px;
+@actual-width: 8px;
+@actual-height: 8px;
+@actual-total-width: 164px;
+@actual-total-height: 137px;
+@actual-image: '../images/spritesheet.png';
+@actual: 153px 115px -153px -115px 8px 8px 164px 137px '../images/spritesheet.png' 'actual';
+@add-member-popin-name: 'add-member-popin';
+@add-member-popin-x: 0px;
+@add-member-popin-y: 51px;
+@add-member-popin-offset-x: 0px;
+@add-member-popin-offset-y: -51px;
+@add-member-popin-width: 52px;
+@add-member-popin-height: 35px;
+@add-member-popin-total-width: 164px;
+@add-member-popin-total-height: 137px;
+@add-member-popin-image: '../images/spritesheet.png';
+@add-member-popin: 0px 51px 0px -51px 52px 35px 164px 137px '../images/spritesheet.png' 'add-member-popin';
+@can-edit-name: 'can-edit';
+@can-edit-x: 139px;
+@can-edit-y: 95px;
+@can-edit-offset-x: -139px;
+@can-edit-offset-y: -95px;
+@can-edit-width: 20px;
+@can-edit-height: 20px;
+@can-edit-total-width: 164px;
+@can-edit-total-height: 137px;
+@can-edit-image: '../images/spritesheet.png';
+@can-edit: 139px 95px -139px -95px 20px 20px 164px 137px '../images/spritesheet.png' 'can-edit';
+@cant-edit-name: 'cant-edit';
+@cant-edit-x: 139px;
+@cant-edit-y: 75px;
+@cant-edit-offset-x: -139px;
+@cant-edit-offset-y: -75px;
+@cant-edit-width: 20px;
+@cant-edit-height: 20px;
+@cant-edit-total-width: 164px;
+@cant-edit-total-height: 137px;
+@cant-edit-image: '../images/spritesheet.png';
+@cant-edit: 139px 75px -139px -75px 20px 20px 164px 137px '../images/spritesheet.png' 'cant-edit';
+@chat-cn-name: 'chat-cn';
+@chat-cn-x: 0px;
+@chat-cn-y: 86px;
+@chat-cn-offset-x: 0px;
+@chat-cn-offset-y: -86px;
+@chat-cn-width: 30px;
+@chat-cn-height: 25px;
+@chat-cn-total-width: 164px;
+@chat-cn-total-height: 137px;
+@chat-cn-image: '../images/spritesheet.png';
+@chat-cn: 0px 86px 0px -86px 30px 25px 164px 137px '../images/spritesheet.png' 'chat-cn';
+@chat-hk-name: 'chat-hk';
+@chat-hk-x: 103px;
+@chat-hk-y: 54px;
+@chat-hk-offset-x: -103px;
+@chat-hk-offset-y: -54px;
+@chat-hk-width: 30px;
+@chat-hk-height: 25px;
+@chat-hk-total-width: 164px;
+@chat-hk-total-height: 137px;
+@chat-hk-image: '../images/spritesheet.png';
+@chat-hk: 103px 54px -103px -54px 30px 25px 164px 137px '../images/spritesheet.png' 'chat-hk';
+@close-popin-name: 'close-popin';
+@close-popin-x: 0px;
+@close-popin-y: 0px;
+@close-popin-offset-x: 0px;
+@close-popin-offset-y: 0px;
+@close-popin-width: 51px;
+@close-popin-height: 51px;
+@close-popin-total-width: 164px;
+@close-popin-total-height: 137px;
+@close-popin-image: '../images/spritesheet.png';
+@close-popin: 0px 0px 0px 0px 51px 51px 164px 137px '../images/spritesheet.png' 'close-popin';
+@delete-user-name: 'delete-user';
+@delete-user-x: 103px;
+@delete-user-y: 25px;
+@delete-user-offset-x: -103px;
+@delete-user-offset-y: -25px;
+@delete-user-width: 29px;
+@delete-user-height: 29px;
+@delete-user-total-width: 164px;
+@delete-user-total-height: 137px;
+@delete-user-image: '../images/spritesheet.png';
+@delete-user: 103px 25px -103px -25px 29px 29px 164px 137px '../images/spritesheet.png' 'delete-user';
+@dl-name: 'dl';
+@dl-x: 26px;
+@dl-y: 111px;
+@dl-offset-x: -26px;
+@dl-offset-y: -111px;
+@dl-width: 26px;
+@dl-height: 25px;
+@dl-total-width: 164px;
+@dl-total-height: 137px;
+@dl-image: '../images/spritesheet.png';
+@dl: 26px 111px -26px -111px 26px 25px 164px 137px '../images/spritesheet.png' 'dl';
+@highlights-off-name: 'highlights-off';
+@highlights-off-x: 66px;
+@highlights-off-y: 35px;
+@highlights-off-offset-x: -66px;
+@highlights-off-offset-y: -35px;
+@highlights-off-width: 12px;
+@highlights-off-height: 12px;
+@highlights-off-total-width: 164px;
+@highlights-off-total-height: 137px;
+@highlights-off-image: '../images/spritesheet.png';
+@highlights-off: 66px 35px -66px -35px 12px 12px 164px 137px '../images/spritesheet.png' 'highlights-off';
+@highlights-on-name: 'highlights-on';
+@highlights-on-x: 51px;
+@highlights-on-y: 35px;
+@highlights-on-offset-x: -51px;
+@highlights-on-offset-y: -35px;
+@highlights-on-width: 15px;
+@highlights-on-height: 15px;
+@highlights-on-total-width: 164px;
+@highlights-on-total-height: 137px;
+@highlights-on-image: '../images/spritesheet.png';
+@highlights-on: 51px 35px -51px -35px 15px 15px 164px 137px '../images/spritesheet.png' 'highlights-on';
+@left-name: 'left';
+@left-x: 139px;
+@left-y: 115px;
+@left-offset-x: -139px;
+@left-offset-y: -115px;
+@left-width: 14px;
+@left-height: 17px;
+@left-total-width: 164px;
+@left-total-height: 137px;
+@left-image: '../images/spritesheet.png';
+@left: 139px 115px -139px -115px 14px 17px 164px 137px '../images/spritesheet.png' 'left';
+@line-jp-name: 'line-jp';
+@line-jp-x: 30px;
+@line-jp-y: 86px;
+@line-jp-offset-x: -30px;
+@line-jp-offset-y: -86px;
+@line-jp-width: 30px;
+@line-jp-height: 25px;
+@line-jp-total-width: 164px;
+@line-jp-total-height: 137px;
+@line-jp-image: '../images/spritesheet.png';
+@line-jp: 30px 86px -30px -86px 30px 25px 164px 137px '../images/spritesheet.png' 'line-jp';
+@line-tw-name: 'line-tw';
+@line-tw-x: 60px;
+@line-tw-y: 86px;
+@line-tw-offset-x: -60px;
+@line-tw-offset-y: -86px;
+@line-tw-width: 30px;
+@line-tw-height: 25px;
+@line-tw-total-width: 164px;
+@line-tw-total-height: 137px;
+@line-tw-image: '../images/spritesheet.png';
+@line-tw: 60px 86px -60px -86px 30px 25px 164px 137px '../images/spritesheet.png' 'line-tw';
+@manage-member-name: 'manage-member';
+@manage-member-x: 51px;
+@manage-member-y: 0px;
+@manage-member-offset-x: -51px;
+@manage-member-offset-y: 0px;
+@manage-member-width: 52px;
+@manage-member-height: 35px;
+@manage-member-total-width: 164px;
+@manage-member-total-height: 137px;
+@manage-member-image: '../images/spritesheet.png';
+@manage-member: 51px 0px -51px 0px 52px 35px 164px 137px '../images/spritesheet.png' 'manage-member';
+@member-name: 'member';
+@member-x: 90px;
+@member-y: 86px;
+@member-offset-x: -90px;
+@member-offset-y: -86px;
+@member-width: 27px;
+@member-height: 25px;
+@member-total-width: 164px;
+@member-total-height: 137px;
+@member-image: '../images/spritesheet.png';
+@member: 90px 86px -90px -86px 27px 25px 164px 137px '../images/spritesheet.png' 'member';
+@notification-off-name: 'notification-off';
+@notification-off-x: 78px;
+@notification-off-y: 111px;
+@notification-off-offset-x: -78px;
+@notification-off-offset-y: -111px;
+@notification-off-width: 25px;
+@notification-off-height: 25px;
+@notification-off-total-width: 164px;
+@notification-off-total-height: 137px;
+@notification-off-image: '../images/spritesheet.png';
+@notification-off: 78px 111px -78px -111px 25px 25px 164px 137px '../images/spritesheet.png' 'notification-off';
+@notification-on-name: 'notification-on';
+@notification-on-x: 103px;
+@notification-on-y: 111px;
+@notification-on-offset-x: -103px;
+@notification-on-offset-y: -111px;
+@notification-on-width: 25px;
+@notification-on-height: 25px;
+@notification-on-total-width: 164px;
+@notification-on-total-height: 137px;
+@notification-on-image: '../images/spritesheet.png';
+@notification-on: 103px 111px -103px -111px 25px 25px 164px 137px '../images/spritesheet.png' 'notification-on';
+@plus-name: 'plus';
+@plus-x: 52px;
+@plus-y: 51px;
+@plus-offset-x: -52px;
+@plus-offset-y: -51px;
+@plus-width: 35px;
+@plus-height: 35px;
+@plus-total-width: 164px;
+@plus-total-height: 137px;
+@plus-image: '../images/spritesheet.png';
+@plus: 52px 51px -52px -51px 35px 35px 164px 137px '../images/spritesheet.png' 'plus';
+@print-name: 'print';
+@print-x: 52px;
+@print-y: 111px;
+@print-offset-x: -52px;
+@print-offset-y: -111px;
+@print-width: 26px;
+@print-height: 25px;
+@print-total-width: 164px;
+@print-total-height: 137px;
+@print-image: '../images/spritesheet.png';
+@print: 52px 111px -52px -111px 26px 25px 164px 137px '../images/spritesheet.png' 'print';
+@right-name: 'right';
+@right-x: 87px;
+@right-y: 51px;
+@right-offset-x: -87px;
+@right-offset-y: -51px;
+@right-width: 14px;
+@right-height: 17px;
+@right-total-width: 164px;
+@right-total-height: 137px;
+@right-image: '../images/spritesheet.png';
+@right: 87px 51px -87px -51px 14px 17px 164px 137px '../images/spritesheet.png' 'right';
+@weibo-cn-name: 'weibo-cn';
+@weibo-cn-x: 103px;
+@weibo-cn-y: 0px;
+@weibo-cn-offset-x: -103px;
+@weibo-cn-offset-y: 0px;
+@weibo-cn-width: 36px;
+@weibo-cn-height: 25px;
+@weibo-cn-total-width: 164px;
+@weibo-cn-total-height: 137px;
+@weibo-cn-image: '../images/spritesheet.png';
+@weibo-cn: 103px 0px -103px 0px 36px 25px 164px 137px '../images/spritesheet.png' 'weibo-cn';
+@-facebook-2x-name: 'Facebook@2x';
+@-facebook-2x-x: 277px;
+@-facebook-2x-y: 50px;
+@-facebook-2x-offset-x: -277px;
+@-facebook-2x-offset-y: -50px;
+@-facebook-2x-width: 50px;
+@-facebook-2x-height: 50px;
+@-facebook-2x-total-width: 327px;
+@-facebook-2x-total-height: 274px;
+@-facebook-2x-image: '../images/spritesheet@2x.png';
+@-facebook-2x: 277px 50px -277px -50px 50px 50px 327px 274px '../images/spritesheet@2x.png' 'Facebook@2x';
+@-instagram-2x-name: 'Instagram@2x';
+@-instagram-2x-x: 277px;
+@-instagram-2x-y: 100px;
+@-instagram-2x-offset-x: -277px;
+@-instagram-2x-offset-y: -100px;
+@-instagram-2x-width: 50px;
+@-instagram-2x-height: 50px;
+@-instagram-2x-total-width: 327px;
+@-instagram-2x-total-height: 274px;
+@-instagram-2x-image: '../images/spritesheet@2x.png';
+@-instagram-2x: 277px 100px -277px -100px 50px 50px 327px 274px '../images/spritesheet@2x.png' 'Instagram@2x';
+@-tumblr-2x-name: 'Tumblr@2x';
+@-tumblr-2x-x: 0px;
+@-tumblr-2x-y: 222px;
+@-tumblr-2x-offset-x: 0px;
+@-tumblr-2x-offset-y: -222px;
+@-tumblr-2x-width: 52px;
+@-tumblr-2x-height: 52px;
+@-tumblr-2x-total-width: 327px;
+@-tumblr-2x-total-height: 274px;
+@-tumblr-2x-image: '../images/spritesheet@2x.png';
+@-tumblr-2x: 0px 222px 0px -222px 52px 52px 327px 274px '../images/spritesheet@2x.png' 'Tumblr@2x';
+@-twitter-2x-name: 'Twitter@2x';
+@-twitter-2x-x: 277px;
+@-twitter-2x-y: 0px;
+@-twitter-2x-offset-x: -277px;
+@-twitter-2x-offset-y: 0px;
+@-twitter-2x-width: 50px;
+@-twitter-2x-height: 50px;
+@-twitter-2x-total-width: 327px;
+@-twitter-2x-total-height: 274px;
+@-twitter-2x-image: '../images/spritesheet@2x.png';
+@-twitter-2x: 277px 0px -277px 0px 50px 50px 327px 274px '../images/spritesheet@2x.png' 'Twitter@2x';
+@actual-2x-name: 'actual@2x';
+@actual-2x-x: 305px;
+@actual-2x-y: 230px;
+@actual-2x-offset-x: -305px;
+@actual-2x-offset-y: -230px;
+@actual-2x-width: 16px;
+@actual-2x-height: 16px;
+@actual-2x-total-width: 327px;
+@actual-2x-total-height: 274px;
+@actual-2x-image: '../images/spritesheet@2x.png';
+@actual-2x: 305px 230px -305px -230px 16px 16px 327px 274px '../images/spritesheet@2x.png' 'actual@2x';
+@add-member-popin-2x-name: 'add-member-popin@2x';
+@add-member-popin-2x-x: 102px;
+@add-member-popin-2x-y: 0px;
+@add-member-popin-2x-offset-x: -102px;
+@add-member-popin-2x-offset-y: 0px;
+@add-member-popin-2x-width: 103px;
+@add-member-popin-2x-height: 71px;
+@add-member-popin-2x-total-width: 327px;
+@add-member-popin-2x-total-height: 274px;
+@add-member-popin-2x-image: '../images/spritesheet@2x.png';
+@add-member-popin-2x: 102px 0px -102px 0px 103px 71px 327px 274px '../images/spritesheet@2x.png' 'add-member-popin@2x';
+@can-edit-2x-name: 'can-edit@2x';
+@can-edit-2x-x: 277px;
+@can-edit-2x-y: 190px;
+@can-edit-2x-offset-x: -277px;
+@can-edit-2x-offset-y: -190px;
+@can-edit-2x-width: 40px;
+@can-edit-2x-height: 40px;
+@can-edit-2x-total-width: 327px;
+@can-edit-2x-total-height: 274px;
+@can-edit-2x-image: '../images/spritesheet@2x.png';
+@can-edit-2x: 277px 190px -277px -190px 40px 40px 327px 274px '../images/spritesheet@2x.png' 'can-edit@2x';
+@cant-edit-2x-name: 'cant-edit@2x';
+@cant-edit-2x-x: 277px;
+@cant-edit-2x-y: 150px;
+@cant-edit-2x-offset-x: -277px;
+@cant-edit-2x-offset-y: -150px;
+@cant-edit-2x-width: 40px;
+@cant-edit-2x-height: 40px;
+@cant-edit-2x-total-width: 327px;
+@cant-edit-2x-total-height: 274px;
+@cant-edit-2x-image: '../images/spritesheet@2x.png';
+@cant-edit-2x: 277px 150px -277px -150px 40px 40px 327px 274px '../images/spritesheet@2x.png' 'cant-edit@2x';
+@chat-cn-2x-name: 'chat-cn@2x';
+@chat-cn-2x-x: 0px;
+@chat-cn-2x-y: 172px;
+@chat-cn-2x-offset-x: 0px;
+@chat-cn-2x-offset-y: -172px;
+@chat-cn-2x-width: 60px;
+@chat-cn-2x-height: 50px;
+@chat-cn-2x-total-width: 327px;
+@chat-cn-2x-total-height: 274px;
+@chat-cn-2x-image: '../images/spritesheet@2x.png';
+@chat-cn-2x: 0px 172px 0px -172px 60px 50px 327px 274px '../images/spritesheet@2x.png' 'chat-cn@2x';
+@chat-hk-2x-name: 'chat-hk@2x';
+@chat-hk-2x-x: 205px;
+@chat-hk-2x-y: 108px;
+@chat-hk-2x-offset-x: -205px;
+@chat-hk-2x-offset-y: -108px;
+@chat-hk-2x-width: 60px;
+@chat-hk-2x-height: 50px;
+@chat-hk-2x-total-width: 327px;
+@chat-hk-2x-total-height: 274px;
+@chat-hk-2x-image: '../images/spritesheet@2x.png';
+@chat-hk-2x: 205px 108px -205px -108px 60px 50px 327px 274px '../images/spritesheet@2x.png' 'chat-hk@2x';
+@close-popin-2x-name: 'close-popin@2x';
+@close-popin-2x-x: 0px;
+@close-popin-2x-y: 0px;
+@close-popin-2x-offset-x: 0px;
+@close-popin-2x-offset-y: 0px;
+@close-popin-2x-width: 102px;
+@close-popin-2x-height: 102px;
+@close-popin-2x-total-width: 327px;
+@close-popin-2x-total-height: 274px;
+@close-popin-2x-image: '../images/spritesheet@2x.png';
+@close-popin-2x: 0px 0px 0px 0px 102px 102px 327px 274px '../images/spritesheet@2x.png' 'close-popin@2x';
+@delete-user-2x-name: 'delete-user@2x';
+@delete-user-2x-x: 205px;
+@delete-user-2x-y: 50px;
+@delete-user-2x-offset-x: -205px;
+@delete-user-2x-offset-y: -50px;
+@delete-user-2x-width: 58px;
+@delete-user-2x-height: 58px;
+@delete-user-2x-total-width: 327px;
+@delete-user-2x-total-height: 274px;
+@delete-user-2x-image: '../images/spritesheet@2x.png';
+@delete-user-2x: 205px 50px -205px -50px 58px 58px 327px 274px '../images/spritesheet@2x.png' 'delete-user@2x';
+@dl-2x-name: 'dl@2x';
+@dl-2x-x: 52px;
+@dl-2x-y: 222px;
+@dl-2x-offset-x: -52px;
+@dl-2x-offset-y: -222px;
+@dl-2x-width: 52px;
+@dl-2x-height: 50px;
+@dl-2x-total-width: 327px;
+@dl-2x-total-height: 274px;
+@dl-2x-image: '../images/spritesheet@2x.png';
+@dl-2x: 52px 222px -52px -222px 52px 50px 327px 274px '../images/spritesheet@2x.png' 'dl@2x';
+@highlights-off-2x-name: 'highlights-off@2x';
+@highlights-off-2x-x: 132px;
+@highlights-off-2x-y: 71px;
+@highlights-off-2x-offset-x: -132px;
+@highlights-off-2x-offset-y: -71px;
+@highlights-off-2x-width: 24px;
+@highlights-off-2x-height: 24px;
+@highlights-off-2x-total-width: 327px;
+@highlights-off-2x-total-height: 274px;
+@highlights-off-2x-image: '../images/spritesheet@2x.png';
+@highlights-off-2x: 132px 71px -132px -71px 24px 24px 327px 274px '../images/spritesheet@2x.png' 'highlights-off@2x';
+@highlights-on-2x-name: 'highlights-on@2x';
+@highlights-on-2x-x: 102px;
+@highlights-on-2x-y: 71px;
+@highlights-on-2x-offset-x: -102px;
+@highlights-on-2x-offset-y: -71px;
+@highlights-on-2x-width: 30px;
+@highlights-on-2x-height: 30px;
+@highlights-on-2x-total-width: 327px;
+@highlights-on-2x-total-height: 274px;
+@highlights-on-2x-image: '../images/spritesheet@2x.png';
+@highlights-on-2x: 102px 71px -102px -71px 30px 30px 327px 274px '../images/spritesheet@2x.png' 'highlights-on@2x';
+@left-2x-name: 'left@2x';
+@left-2x-x: 277px;
+@left-2x-y: 230px;
+@left-2x-offset-x: -277px;
+@left-2x-offset-y: -230px;
+@left-2x-width: 28px;
+@left-2x-height: 34px;
+@left-2x-total-width: 327px;
+@left-2x-total-height: 274px;
+@left-2x-image: '../images/spritesheet@2x.png';
+@left-2x: 277px 230px -277px -230px 28px 34px 327px 274px '../images/spritesheet@2x.png' 'left@2x';
+@line-jp-2x-name: 'line-jp@2x';
+@line-jp-2x-x: 60px;
+@line-jp-2x-y: 172px;
+@line-jp-2x-offset-x: -60px;
+@line-jp-2x-offset-y: -172px;
+@line-jp-2x-width: 60px;
+@line-jp-2x-height: 50px;
+@line-jp-2x-total-width: 327px;
+@line-jp-2x-total-height: 274px;
+@line-jp-2x-image: '../images/spritesheet@2x.png';
+@line-jp-2x: 60px 172px -60px -172px 60px 50px 327px 274px '../images/spritesheet@2x.png' 'line-jp@2x';
+@line-tw-2x-name: 'line-tw@2x';
+@line-tw-2x-x: 120px;
+@line-tw-2x-y: 172px;
+@line-tw-2x-offset-x: -120px;
+@line-tw-2x-offset-y: -172px;
+@line-tw-2x-width: 60px;
+@line-tw-2x-height: 50px;
+@line-tw-2x-total-width: 327px;
+@line-tw-2x-total-height: 274px;
+@line-tw-2x-image: '../images/spritesheet@2x.png';
+@line-tw-2x: 120px 172px -120px -172px 60px 50px 327px 274px '../images/spritesheet@2x.png' 'line-tw@2x';
+@manage-member-2x-name: 'manage-member@2x';
+@manage-member-2x-x: 0px;
+@manage-member-2x-y: 102px;
+@manage-member-2x-offset-x: 0px;
+@manage-member-2x-offset-y: -102px;
+@manage-member-2x-width: 103px;
+@manage-member-2x-height: 70px;
+@manage-member-2x-total-width: 327px;
+@manage-member-2x-total-height: 274px;
+@manage-member-2x-image: '../images/spritesheet@2x.png';
+@manage-member-2x: 0px 102px 0px -102px 103px 70px 327px 274px '../images/spritesheet@2x.png' 'manage-member@2x';
+@member-2x-name: 'member@2x';
+@member-2x-x: 180px;
+@member-2x-y: 172px;
+@member-2x-offset-x: -180px;
+@member-2x-offset-y: -172px;
+@member-2x-width: 54px;
+@member-2x-height: 50px;
+@member-2x-total-width: 327px;
+@member-2x-total-height: 274px;
+@member-2x-image: '../images/spritesheet@2x.png';
+@member-2x: 180px 172px -180px -172px 54px 50px 327px 274px '../images/spritesheet@2x.png' 'member@2x';
+@notification-off-2x-name: 'notification-off@2x';
+@notification-off-2x-x: 156px;
+@notification-off-2x-y: 222px;
+@notification-off-2x-offset-x: -156px;
+@notification-off-2x-offset-y: -222px;
+@notification-off-2x-width: 50px;
+@notification-off-2x-height: 50px;
+@notification-off-2x-total-width: 327px;
+@notification-off-2x-total-height: 274px;
+@notification-off-2x-image: '../images/spritesheet@2x.png';
+@notification-off-2x: 156px 222px -156px -222px 50px 50px 327px 274px '../images/spritesheet@2x.png' 'notification-off@2x';
+@notification-on-2x-name: 'notification-on@2x';
+@notification-on-2x-x: 206px;
+@notification-on-2x-y: 222px;
+@notification-on-2x-offset-x: -206px;
+@notification-on-2x-offset-y: -222px;
+@notification-on-2x-width: 50px;
+@notification-on-2x-height: 50px;
+@notification-on-2x-total-width: 327px;
+@notification-on-2x-total-height: 274px;
+@notification-on-2x-image: '../images/spritesheet@2x.png';
+@notification-on-2x: 206px 222px -206px -222px 50px 50px 327px 274px '../images/spritesheet@2x.png' 'notification-on@2x';
+@plus-2x-name: 'plus@2x';
+@plus-2x-x: 103px;
+@plus-2x-y: 102px;
+@plus-2x-offset-x: -103px;
+@plus-2x-offset-y: -102px;
+@plus-2x-width: 70px;
+@plus-2x-height: 70px;
+@plus-2x-total-width: 327px;
+@plus-2x-total-height: 274px;
+@plus-2x-image: '../images/spritesheet@2x.png';
+@plus-2x: 103px 102px -103px -102px 70px 70px 327px 274px '../images/spritesheet@2x.png' 'plus@2x';
+@print-2x-name: 'print@2x';
+@print-2x-x: 104px;
+@print-2x-y: 222px;
+@print-2x-offset-x: -104px;
+@print-2x-offset-y: -222px;
+@print-2x-width: 52px;
+@print-2x-height: 50px;
+@print-2x-total-width: 327px;
+@print-2x-total-height: 274px;
+@print-2x-image: '../images/spritesheet@2x.png';
+@print-2x: 104px 222px -104px -222px 52px 50px 327px 274px '../images/spritesheet@2x.png' 'print@2x';
+@right-2x-name: 'right@2x';
+@right-2x-x: 173px;
+@right-2x-y: 102px;
+@right-2x-offset-x: -173px;
+@right-2x-offset-y: -102px;
+@right-2x-width: 28px;
+@right-2x-height: 34px;
+@right-2x-total-width: 327px;
+@right-2x-total-height: 274px;
+@right-2x-image: '../images/spritesheet@2x.png';
+@right-2x: 173px 102px -173px -102px 28px 34px 327px 274px '../images/spritesheet@2x.png' 'right@2x';
+@weibo-cn-2x-name: 'weibo-cn@2x';
+@weibo-cn-2x-x: 205px;
+@weibo-cn-2x-y: 0px;
+@weibo-cn-2x-offset-x: -205px;
+@weibo-cn-2x-offset-y: 0px;
+@weibo-cn-2x-width: 72px;
+@weibo-cn-2x-height: 50px;
+@weibo-cn-2x-total-width: 327px;
+@weibo-cn-2x-total-height: 274px;
+@weibo-cn-2x-image: '../images/spritesheet@2x.png';
+@weibo-cn-2x: 205px 0px -205px 0px 72px 50px 327px 274px '../images/spritesheet@2x.png' 'weibo-cn@2x';
+@spritesheet-width: 164px;
+@spritesheet-height: 137px;
+@spritesheet-image: '../images/spritesheet.png';
+@spritesheet-sprites: @-facebook @-instagram @-tumblr @-twitter @actual @add-member-popin @can-edit @cant-edit @chat-cn @chat-hk @close-popin @delete-user @dl @highlights-off @highlights-on @left @line-jp @line-tw @manage-member @member @notification-off @notification-on @plus @print @right @weibo-cn;
+@spritesheet: 164px 137px '../images/spritesheet.png' @spritesheet-sprites;
+@retina-spritesheet-width: 327px;
+@retina-spritesheet-height: 274px;
+@retina-spritesheet-image: '../images/spritesheet@2x.png';
+@retina-spritesheet-sprites: @-facebook-2x @-instagram-2x @-tumblr-2x @-twitter-2x @actual-2x @add-member-popin-2x @can-edit-2x @cant-edit-2x @chat-cn-2x @chat-hk-2x @close-popin-2x @delete-user-2x @dl-2x @highlights-off-2x @highlights-on-2x @left-2x @line-jp-2x @line-tw-2x @manage-member-2x @member-2x @notification-off-2x @notification-on-2x @plus-2x @print-2x @right-2x @weibo-cn-2x;
+@retina-spritesheet: 327px 274px '../images/spritesheet@2x.png' @retina-spritesheet-sprites;
+
+/*
+These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
+
+The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
+*/
+@-facebook-group-name: 'Facebook';
+@-facebook-group: 'Facebook' @-facebook @-facebook-2x;
+@-instagram-group-name: 'Instagram';
+@-instagram-group: 'Instagram' @-instagram @-instagram-2x;
+@-tumblr-group-name: 'Tumblr';
+@-tumblr-group: 'Tumblr' @-tumblr @-tumblr-2x;
+@-twitter-group-name: 'Twitter';
+@-twitter-group: 'Twitter' @-twitter @-twitter-2x;
+@actual-group-name: 'actual';
+@actual-group: 'actual' @actual @actual-2x;
+@add-member-popin-group-name: 'add-member-popin';
+@add-member-popin-group: 'add-member-popin' @add-member-popin @add-member-popin-2x;
+@can-edit-group-name: 'can-edit';
+@can-edit-group: 'can-edit' @can-edit @can-edit-2x;
+@cant-edit-group-name: 'cant-edit';
+@cant-edit-group: 'cant-edit' @cant-edit @cant-edit-2x;
+@chat-cn-group-name: 'chat-cn';
+@chat-cn-group: 'chat-cn' @chat-cn @chat-cn-2x;
+@chat-hk-group-name: 'chat-hk';
+@chat-hk-group: 'chat-hk' @chat-hk @chat-hk-2x;
+@close-popin-group-name: 'close-popin';
+@close-popin-group: 'close-popin' @close-popin @close-popin-2x;
+@delete-user-group-name: 'delete-user';
+@delete-user-group: 'delete-user' @delete-user @delete-user-2x;
+@dl-group-name: 'dl';
+@dl-group: 'dl' @dl @dl-2x;
+@highlights-off-group-name: 'highlights-off';
+@highlights-off-group: 'highlights-off' @highlights-off @highlights-off-2x;
+@highlights-on-group-name: 'highlights-on';
+@highlights-on-group: 'highlights-on' @highlights-on @highlights-on-2x;
+@left-group-name: 'left';
+@left-group: 'left' @left @left-2x;
+@line-jp-group-name: 'line-jp';
+@line-jp-group: 'line-jp' @line-jp @line-jp-2x;
+@line-tw-group-name: 'line-tw';
+@line-tw-group: 'line-tw' @line-tw @line-tw-2x;
+@manage-member-group-name: 'manage-member';
+@manage-member-group: 'manage-member' @manage-member @manage-member-2x;
+@member-group-name: 'member';
+@member-group: 'member' @member @member-2x;
+@notification-off-group-name: 'notification-off';
+@notification-off-group: 'notification-off' @notification-off @notification-off-2x;
+@notification-on-group-name: 'notification-on';
+@notification-on-group: 'notification-on' @notification-on @notification-on-2x;
+@plus-group-name: 'plus';
+@plus-group: 'plus' @plus @plus-2x;
+@print-group-name: 'print';
+@print-group: 'print' @print @print-2x;
+@right-group-name: 'right';
+@right-group: 'right' @right @right-2x;
+@weibo-cn-group-name: 'weibo-cn';
+@weibo-cn-group: 'weibo-cn' @weibo-cn @weibo-cn-2x;
+@retina-groups: @-facebook-group @-instagram-group @-tumblr-group @-twitter-group @actual-group @add-member-popin-group @can-edit-group @cant-edit-group @chat-cn-group @chat-hk-group @close-popin-group @delete-user-group @dl-group @highlights-off-group @highlights-on-group @left-group @line-jp-group @line-tw-group @manage-member-group @member-group @notification-off-group @notification-on-group @plus-group @print-group @right-group @weibo-cn-group;
+
+/*
+The provided classes are intended to be used with the array-like variables
+
+.icon-home {
+  .sprite-width(@icon-home);
+}
+.icon-email {
+  .sprite(@icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.sprite-width(@sprite) {
+  width: extract(@sprite, 5);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 6);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 3);
+  @sprite-offset-y: extract(@sprite, 4);
+  background-position: @sprite-offset-x @sprite-offset-y;
+}
+
+.sprite-image(@sprite) {
+  @sprite-image: extract(@sprite, 9);
+  @sprite-image-bare: ~`"@{sprite-image}".slice(1, -1)`;
+  background-image: url(@sprite-image-bare);
+}
+
+.sprite(@sprite) {
+  .sprite-image(@sprite);
+  .sprite-position(@sprite);
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+/*
+The `retina-sprite` class sets up rules and a media query for a sprite/retina sprite.
+  It should be used with a "retina group" variable.
+
+The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+
+@icon-home-group: 'icon-home' @icon-home @icon-home-2x;
+
+.icon-home {
+  .retina-sprite(@icon-home-group);
+}
+*/
+.sprite-background-size(@sprite) {
+  @sprite-total-width: extract(@sprite, 7);
+  @sprite-total-height: extract(@sprite, 8);
+  background-size: @sprite-total-width @sprite-total-height;
+}
+
+.retina-sprite(@retina-group) {
+  @normal-sprite: extract(@retina-group, 2);
+  @retina-sprite: extract(@retina-group, 3);
+  .sprite(@normal-sprite);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+         (min-resolution: 192dpi) {
+    .sprite-image(@retina-sprite);
+    .sprite-background-size(@normal-sprite);
+  }
+}
+
+/*
+The `.sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of LESS
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+.sprites(@spritesheet-sprites);
+*/
+.sprites(@sprites, @i: 1) when (@i <= length(@sprites)) {
+  @sprite: extract(@sprites, @i);
+  @sprite-name: e(extract(@sprite, 10));
+  .@{sprite-name} {
+    .sprite(@sprite);
+  }
+  .sprites(@sprites, @i + 1);
+}
+
+/*
+The `.retina-sprites` mixin generates a CSS rule and media query for retina groups
+  This yields the same output as CSS retina template but can be overridden in LESS
+
+.retina-sprites(@retina-groups);
+*/
+.retina-sprites(@retina-groups, @i: 1) when (@i <= length(@retina-groups)) {
+  @retina-group: extract(@retina-groups, @i);
+  @sprite-name: e(extract(@retina-group, 1));
+  .@{sprite-name} {
+    .retina-sprite(@retina-group);
+  }
+  .retina-sprites(@retina-groups, @i + 1);
+}
