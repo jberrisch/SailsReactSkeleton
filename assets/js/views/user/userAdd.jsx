@@ -25,7 +25,7 @@ class UserAdd extends React.Component {
         this.props.route.store.add({
             username: this.refs.username.value,
             email: this.refs.email.value,
-            publish: this.refs.publish.value ==="on"
+            publish: this.refs.publish.value || false
         });
     }
 
