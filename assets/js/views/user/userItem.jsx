@@ -74,35 +74,30 @@ class UserItem extends React.Component {
 
     if (this.props.id) {
       deleteBtn = (
-        <button onClick={this.destroy.bind(this)}>Delete</button>
+          <button onClick={this.destroy.bind(this)}><img className="icon" src="/images/svg/cross.svg" alt="delete" /></button>
       );
     }
 
     return (
-      <li>
-        <div>
-          <input
-            type='text'
-            name='username'
-            value={this.state.username}
-            onChange={this.changeUi}
-          />
-          <input
-            type='email'
-            name='email'
-            value={this.state.email}
-            onChange={this.changeUi}
-          />
-          <input
-            type='checkbox'
-            name='publish'
-            checked={this.state.publish}
-            onChange={this.changeUi}
-          />
-          <button onClick={this.save.bind(this)}>Save</button>
-          {deleteBtn}
-        </div>
-      </li>
+        <tr>
+          <td width="200">
+            {this.state.username}
+          </td>
+          <td width="200">
+            {this.state.email}
+          </td>
+          <td>
+            <input
+                type='checkbox'
+                name='publish'
+                checked={this.state.publish}
+                onChange={this.changeUi}
+            />
+          </td>
+          <td>
+            {deleteBtn}
+          </td>
+        </tr>
     );
   }
 }

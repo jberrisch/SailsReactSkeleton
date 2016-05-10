@@ -13,7 +13,7 @@ var browserHistory = require('react-router').browserHistory;
 
 var Dispatcher = require("flux").Dispatcher;
 
-var UserView = require('./views/user.jsx');
+var UserView = require('./views/user/user.jsx');
 var UserStore = require('./stores/user.js');
 
 var EventView = require('./views/event.jsx');
