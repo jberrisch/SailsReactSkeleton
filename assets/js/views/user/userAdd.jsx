@@ -20,11 +20,9 @@ class UserAdd extends React.Component {
     }
 
     add(e) {
-
         e.preventDefault();
-        console.log(this.refs.form.value().validation)
         this.props.route.store.add({
-            username: this.refs.username.value,
+            username: this.refs.firstname.value+'|'+this.refs.lastname.value,
             email: this.refs.email.value,
             publish: false
         });

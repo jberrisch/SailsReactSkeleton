@@ -67,7 +67,7 @@ class UserView extends React.Component {
     }
 
     var _cancelAddUser = this.state.activeView === 'add' ? (
-        <button className="icon-add-user" onClick={this.backToList.bind(this)}>
+        <button className="icon-add-user cancel" onClick={this.backToList.bind(this)}>
           <img className="icon" src="/images/svg/user.svg" alt="" />
           <img className="icon small" src="/images/svg/cross.svg" alt="" />
         </button>) : '';

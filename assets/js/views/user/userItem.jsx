@@ -45,14 +45,16 @@ class UserItem extends React.Component {
 
         if (this.props.id) {
             deleteBtn = (
-                <button onClick={this.destroy.bind(this)}><img className="icon" src="/images/svg/cross.svg" alt="delete" /></button>
+                <button onClick={this.destroy.bind(this)}><img className="icon small" src="/images/svg/cross.svg" alt="delete" /></button>
             );
         }
+
+        var name = this.state.username.split('|');
 
         return (
             <tr>
                 <td width="200">
-                    {this.state.username}
+                    {name[0]} {name[1]}
                 </td>
                 <td width="200">
                     {this.state.email}
