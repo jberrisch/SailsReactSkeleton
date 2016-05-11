@@ -13,7 +13,7 @@ var browserHistory = require('react-router').browserHistory;
 
 var Dispatcher = require("flux").Dispatcher;
 
-var AccountView = require('./views/account/account.jsx');
+var Account = require('./views/account/account.jsx');
 var AccountStore = require('./stores/account.js');
 
 var EventView = require('./views/event.jsx');
@@ -39,7 +39,7 @@ var eventStore = new EventStore(dispatcher, 'event', sio);
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/index/account" component={AccountView} store={accountStore}/>
+    <Route path="/index/account" component={Account} store={accountStore}/>
     <Route path="/index/event" component={EventView} store={eventStore}/>
   </Router>
 ), document.getElementById('app'));

@@ -27,18 +27,21 @@ class AccountItem extends React.Component {
                 username: (this.props.account.user.username || '')
             }
         };
+
+        this._listener = this.listener.bind(this);
+        this._listenEvent = 'change-item-' + this.props.id;
     }
 
     componentDidMount() {
         if (!this.listening) {
-            this.store.on('change-item-' + this.props.id, this.listener.bind(this));
+            this.store.on(this._listenEvent, this._listener);
             this.listening = true;
         }
     }
 
     componentWillUnmount() {
         if (this.listening) {
-            this.store.removeListener('change-item-' + this.props.id, this.listener);
+            this.store.removeListener(this._listenEvent, this._listener);
             this.listening = false;
         }
     }

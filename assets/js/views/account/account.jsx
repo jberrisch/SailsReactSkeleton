@@ -13,7 +13,7 @@ var AccountAdd = require('./accountAdd.jsx');
  *
  */
 
-class AccountView extends React.Component {
+class Account extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -21,11 +21,13 @@ class AccountView extends React.Component {
     this.state = {
       activeView: 'list'
     };
+
+    this._listener = this.listener.bind(this);
   }
 
   componentDidMount() {
     if (!this.listening) {
-      this.store.on('change', this.listener.bind(this));
+      this.store.on('change', this._listener);
       this.listening = true;
     }
 
@@ -34,7 +36,7 @@ class AccountView extends React.Component {
 
   componentWillUnmount() {
     if (this.listening) {
-      this.store.removeListener('change', this.listener);
+      this.store.removeListener('change', this._listener);
       this.listening = false;
     }
   }
@@ -88,4 +90,4 @@ class AccountView extends React.Component {
  *
  */
 
-module.exports = AccountView;
+module.exports = Account;

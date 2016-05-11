@@ -20,18 +20,20 @@ class AccountList extends React.Component {
         this.state = {
             accounts: this.store.get()
         };
+
+        this._listener = this.listener.bind(this);
     }
 
     componentDidMount() {
       if (!this.listening) {
-        this.store.on('change', this.listener.bind(this));
+        this.store.on('change', this._listener);
         this.listening = true;
       }
     }
 
     componentWillUnmount() {
       if (this.listening) {
-        this.store.removeListener('change', this.listener);
+        this.store.removeListener('change', this._listener);
         this.listening = false;
       }
     }
