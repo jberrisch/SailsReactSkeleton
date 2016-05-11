@@ -34,6 +34,10 @@ module.exports = {
             via: 'event',
             through: 'eventchannel'
         }
+    },
+
+    fromTo: function(from, to, cb) {
+        this.find({date_from: {'>=': from}, date_to: {'<': to}}).populate('channels').exec(cb);
     }
 
 };
