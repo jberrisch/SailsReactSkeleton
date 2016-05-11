@@ -54,12 +54,14 @@ class AccountItem extends React.Component {
     changePublishRights(e) {
         this.setState({
             publish: e.target.checked
+        }, function() {
+            this.props.store.save( this.props.id, this.state );
         });
 
         console.log('E target checked:', e.target.checked);
         console.log('State           :', this.state.publish);
 
-        this.props.store.save( this.props.id, this.state );
+
     }
 
     save() {
