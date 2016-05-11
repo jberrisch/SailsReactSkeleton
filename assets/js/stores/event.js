@@ -1,113 +1,118 @@
 /**
- * Modules
- *
- */
+* Modules
+*
+*/
 
-var MapStore = require('flux/utils').MapStore;
+var EventEmitter = require('events').EventEmitter;
 
 
 /**
- * Class
- *
- */
+* Class
+*
+*/
 
-class EventStore extends MapStore {
-  constructor(dispatcher, channel, socket) {
-    super(dispatcher);
+class Event extends EventEmitter {
+    constructor(dispatcher, channel, socket) {
+        super();
 
-    this.dispatcher = dispatcher;
-    this.channel = channel;
-    this.socket = socket;
-    this.url = '/' + channel;
+        this.mapStore = require('flux/utils').MapStore;
 
-    this.events = [];
+        this.dispatcher = dispatcher;
+        this.dispatcherToken = this.dispatcher.register(action => this.reduce(action));
+        this.channel = channel;
+        this.socket = socket;
+        this.url = '/' + channel;
 
-    this.connect();
-  }
+        this.events = [];
+        this.channels = [];
 
-  emit(event) {
-    this.__emitter.emit(event);
-  }
-
-  connect() {
-    this.socket.on(this.channel, msg => {
-      if (msg.verb === 'created' ||
-          msg.verb === 'destroyed') {
-
-        return this.fetch();
-      }
-
-      this.dispatcher.dispatch({
-        actionType: 'event-modified',
-        payload: msg
-      });
-    });
-  }
-
-  reduce(state, action) {
-    if (!action || !action.actionType) {
-      return state;
+        this.connect();
     }
 
-    switch (action.actionType) {
-      case 'event-modified':
-        for (var eventsIt in this.events) {
-          if (this.events[eventsIt].uuid === action.payload.id) {
-            this.events[eventsIt] = action.payload.data;
-            break;
-          }
+    connect() {
+        this.socket.on(this.channel, msg => {
+            if (msg.verb === 'created' ||
+                msg.verb === 'destroyed') {
+
+                return this.fetch();
+            }
+
+            if (msg.verb === 'updated') {
+                this.dispatcher.dispatch({
+                    actionType: 'account-modified',
+                    payload: msg
+                });
+            }
+        });
+    }
+
+    get() {
+        return this.events;
+    }
+
+    reduce(action) {
+        if (!action || !action.actionType) {
+            return;
         }
-        this.emit('change');
-        return state;
 
-      case 'event-add':
-        this.events.push({});
-        this.emit('change');
-        return state;
+        switch (action.actionType) {
+            case 'account-modified':
+                for (var eventsIt in this.events) {
+                    if (this.events[eventsIt].id === parseInt(action.payload.id)) {
+                        this.events[eventsIt] = action.payload.data;
+                        this.emit('change-item-' + this.events[eventsIt].id);
+                        break;
+                    }
+                }
+                break;
 
-      case 'event-fetched':
-        this.events = action.payload;
-        return state.set('events', this.events);
+            case 'account-add':
+                this.events.push({});
+                return this.emit('change');
 
-      default:
-        return state;
+            default:
+                return;
+        }
     }
-  }
 
-  fetch() {
-    this.socket.get(this.url, data => {
-      this.dispatcher.dispatch({
-        actionType: 'event-fetched',
-        payload: data
-      });
-    });
-  }
+    fetch() {
+        this.socket.get(this.url, data => {
+            this.events = data;
+            this.emit('change');
+        });
+    }
 
-  add(state) {
-    this.socket.post(this.url, state, data => {
-      console.log('Event added :: ', data);
-      this.fetch();
-    });
-  }
+    fetchChannels() {
+        this.socket.get('/channels', data => {
+            this.channels = data;
+        });
+    }
 
-  save(id, state) {
-    this.socket.put(this.url + '/' + id, state, data => {
-      console.log('Event saved :: ', data);
-    });
-  };
+    add(state) {
+        this.socket.post(this.url, state, data => {
+            console.log('Event added :: ', data);
+            this.fetch();
+        });
+    }
 
-  destroy(id) {
-    this.socket.delete(this.url + '/' + id, data => {
-      console.log('Event destroyed :: ', data);
-      this.fetch();
-    });
-  }
+    save(id, state) {
+        this.socket.put(this.url + '/' + id, state, data => {
+            console.log('Event saved :: ', data);
+        });
+    };
+
+    destroy(id) {
+        this.socket.delete(this.url + '/' + id, data => {
+            console.log('Event destroyed :: ', data);
+            this.fetch();
+        });
+    }
 }
 
 
 /**
- * Exports
- *
- */
+* Exports
+*
+*/
 
-module.exports = EventStore;
+module.exports = Event;

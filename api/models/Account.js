@@ -17,12 +17,12 @@ module.exports = {
 
     firstname: {
       type: 'string',
-      size: 256,
+      size: 256
     },
 
     lastname: {
       type: 'string',
-      size: 256,
+      size: 256
     },
 
     publish: {
