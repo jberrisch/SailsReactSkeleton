@@ -14,75 +14,83 @@ var EventAdd = require('./eventAdd.jsx');
  */
 
 class Event extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+    constructor(props, context) {
+        super(props, context);
 
-    this.store = this.props.route.store;
-    this.state = {
-      activeView: 'list'
-    };
+        this.store = this.props.route.store;
+        this.state = {
+            channels: [],
+            events: [],
+            days: 7
+        };
 
-    this._listener = this.listener.bind(this);
-  }
-
-  componentDidMount() {
-    if (!this.listening) {
-      this.store.on('change', this._listener);
-      this.listening = true;
+        this._listener = this.listener.bind(this);
     }
 
-    this.store.fetchChannels();
-    this.store.fetch();
-  }
+    componentDidMount() {
+        if (!this.listening) {
+            this.store.on('change', this._listener);
+            this.listening = true;
+        }
 
-  componentWillUnmount() {
-    if (this.listening) {
-      this.store.removeListener('change', this._listener);
-      this.listening = false;
-    }
-  }
-
-  listener() {
-      this.setState({
-        activeView: 'list'
-    });
-  }
-
-  add() {
-    this.setState({
-      activeView : 'add'
-    });
-  }
-
-  backToList() {
-    this.setState({
-      activeView: 'list'
-    })
-  }
-
-  render() {
-    var main;
-
-    if (this.state.activeView === 'list') {
-
-      main =<EventList store={this.store} />;
-    } else {
-      main = <EventAdd store={this.store} />;
+        this.store.fetchChannels();
+        this.store.fetch();
     }
 
-    return (
-        <div className='section-members'>
-          <h2>Members</h2>
-          {main}
-          <div className="buttons">
-            <button onClick={this.add.bind(this)} className={this.state.activeView==='add' ? 'icon-add-user active' : 'icon-add-user' }>
-            </button>
-            <button className={this.state.activeView==='list' ? 'icon-user-list active' : 'icon-user-list' } onClick={this.backToList.bind(this)}>
-            </button>
+    componentWillUnmount() {
+        if (this.listening) {
+            this.store.removeListener('change', this._listener);
+            this.listening = false;
+        }
+    }
+
+    listener() {
+        this.setState({
+            channels: this.store.channels || this.state.channels,
+            events: this.store.events
+        });
+    }
+
+    render() {
+
+        console.log(this.state)
+        return (
+            <div className='section-events'>
+                <table>
+                    <tbody>
+                    {
+                        this.state.channels.map((channel, i) => {
+
+
+                            return <tr key={"channel-"+i}>
+                                <td>{channel.name}</td>
+                                {
+                                    this.buildTableCells(i)
+                                    }
+
+                            </tr>;
+                            })
+                        }
+                    </tbody>
+                </table>
             </div>
-        </div>
-    );
-  }
+        );
+
+    }
+
+    buildTableCells(row) {
+
+        var tds = [];
+        for (let i = 0; i< this.state.days; ++i) {
+            tds.push(
+                <td key={"row-"+row+'-'+i}>Day {i}</td>
+            );
+        }
+
+        return tds.map(td => {
+            return td;
+        });
+    }
 }
 
 

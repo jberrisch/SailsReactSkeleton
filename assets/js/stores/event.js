@@ -83,8 +83,9 @@ class Event extends EventEmitter {
     }
 
     fetchChannels() {
-        this.socket.get('/channels', data => {
+        this.socket.get('/channel', data => {
             this.channels = data;
+            this.emit('change');
         });
     }
 
