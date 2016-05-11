@@ -24,5 +24,9 @@ module.exports = {
             via: 'channel',
             through: 'eventchannel'
         }
+    },
+
+    list: function(cb) {
+        this.find({sort: 'name ASC'}, cb);
     }
 };
