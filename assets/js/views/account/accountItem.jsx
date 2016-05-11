@@ -85,10 +85,10 @@ class AccountItem extends React.Component {
                 <td width="33%">
                     {this.state.firstname} {this.state.lastname}
                 </td>
-                <td width="53%">
+                <td width="47%">
                     {this.state.user.email}
                 </td>
-                <td width="2%">
+                <td width="8%">
                     <label className="checkbox">
                         <input
                             type='checkbox'
