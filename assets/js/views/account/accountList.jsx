@@ -12,7 +12,7 @@ var AccountItem = require('./accountItem.jsx');
  *
  */
 
-class AccountView extends React.Component {
+class AccountList extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -40,12 +40,6 @@ class AccountView extends React.Component {
         this.setState({
             accounts: this.store.get('accounts')
         });
-    }
-
-    componentWillUnmount() {
-        if (this.listenerToken) {
-            this.listenerToken.remove();
-        }
     }
 
     destroy(account) {
@@ -99,4 +93,4 @@ class AccountView extends React.Component {
  *
  */
 
-module.exports = AccountView;
+module.exports = AccountList;

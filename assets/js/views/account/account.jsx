@@ -45,12 +45,6 @@ class AccountView extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    if (this.listenerToken) {
-      this.listenerToken.remove();
-    }
-  }
-
   add() {
     this.setState({
       activeView : 'add'
