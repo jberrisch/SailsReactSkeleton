@@ -93,7 +93,7 @@ class AccountStore extends EventEmitter {
             this.socket.post(this.url, state, data => {
                 console.log('Account added :: ', data);
                 this.fetch();
-            })
+            });
         });
     }
 

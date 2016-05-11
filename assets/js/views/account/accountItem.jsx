@@ -3,6 +3,7 @@
  *
  */
 
+var _ = require('lodash');
 var React = require('react');
 
 
@@ -19,7 +20,7 @@ class AccountItem extends React.Component {
         this.state = {
             firstname: (this.props.account.firstname || ''),
             lastname: (this.props.account.lastname || ''),
-            publish: (this.props.account.publish || ''),
+            publish: (this.props.account.publish || false),
             user: {
                 id: (this.props.account.user.id || ''),
                 email: (this.props.account.user.email || ''),
@@ -43,21 +44,20 @@ class AccountItem extends React.Component {
     }
 
     listener() {
-        this.setState({
-            firstname: (this.store.accounts[this.props.storeKey].firstname || ''),
-            lastname: (this.store.accounts[this.props.storeKey].lastname || ''),
-            publish: (this.store.accounts[this.props.storeKey].publish || ''),
-            user: {
-                email: (this.store.accounts[this.props.storeKey].user.email || ''),
-                username: (this.store.accounts[this.props.storeKey].user.username || '')
-            }
-        });
+        var newState = this.state;
+        _.merge(this.state, this.store.accounts[this.props.storeKey]);
+
+        this.setState(newState);
     }
+
 
     changePublishRights(e) {
         this.setState({
-            publish: e.target.checked || false
+            publish: e.target.checked
         });
+
+        console.log('E target checked:', e.target.checked);
+        console.log('State           :', this.state.publish);
 
         this.props.store.save( this.props.id, this.state );
     }
@@ -78,6 +78,8 @@ class AccountItem extends React.Component {
                 <button onClick={this.destroy.bind(this)} className="icon-delete-user"></button>
             );
         }
+
+        console.log("RENDER          :", this.state.publish);
 
         return (
             <tr>
