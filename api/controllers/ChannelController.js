@@ -7,9 +7,10 @@
 
 module.exports = {
 	list: function(req, res) {
-		console.log("ICI");
-		Model.find({sort: 'name DESC' }, data => {
-			res.send(data);
+		sails.models.channel.list(function(err, result) {
+			if (err) return res.serverError('ERR_CHANNEL_LIST');
+
+			res.send(result);
 		});
 	}
 };
