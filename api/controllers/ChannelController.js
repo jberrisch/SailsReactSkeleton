@@ -7,10 +7,10 @@
 
 module.exports = {
 	list: function(req, res) {
-		sails.models.channel.list(function(err, result) {
+		sails.models.channel.list(function(err, results) {
 			if (err) return res.serverError('ERR_CHANNEL_LIST');
 
-			res.send(result);
+			res.send(results);
 		});
 	}
 };
