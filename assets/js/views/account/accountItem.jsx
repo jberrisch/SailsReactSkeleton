@@ -54,14 +54,10 @@ class AccountItem extends React.Component {
     changePublishRights(e) {
         this.setState({
             publish: e.target.checked
-        }, function() {
+        },
+        () => {
             this.props.store.save( this.props.id, this.state );
         });
-
-        console.log('E target checked:', e.target.checked);
-        console.log('State           :', this.state.publish);
-
-
     }
 
     save() {
@@ -80,8 +76,6 @@ class AccountItem extends React.Component {
                 <button onClick={this.destroy.bind(this)} className="icon-delete-user"></button>
             );
         }
-
-        console.log("RENDER          :", this.state.publish);
 
         return (
             <tr>
